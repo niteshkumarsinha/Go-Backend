@@ -69,4 +69,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	fmt.Println("Hello, World!")
+	user := User{Name: "Nitesh", Age: 25, Email: "nitesh@example.com"}
+	user.Normalize()
+	fmt.Println(user)
 }
