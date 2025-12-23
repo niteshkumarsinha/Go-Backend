@@ -72,4 +72,12 @@ func main() {
 	user := User{Name: "Nitesh", Age: 25, Email: "nitesh@example.com"}
 	user.Normalize()
 	fmt.Println(user)
+	if err := user.Validate(); err != nil {	
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("User created successfully")
+
+	http.HandleFunc("/user", handler)
+	http.ListenAndServe(":8080", nil)	
 }
