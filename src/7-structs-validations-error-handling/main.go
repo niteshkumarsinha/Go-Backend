@@ -1,11 +1,11 @@
 package main
 
-
 import (
-	"fmt"
-	"net/http"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"net/http"
+	"strings"
 )
 
 /*
@@ -17,9 +17,20 @@ import (
 */
 
 type User struct {
-	Name string `json:"name"`
-	Age int `json:"age"`
+	Name  string `json:"name"`
+	Age   int    `json:"age"`
 	Email string `json:"email"`
+}
+
+func (u *User) Normalize() {
+	u.Name = strings.TrimSpace(u.Name)
+	u.Email = strings.TrimSpace(u.Email)
+	if u.Name == "" {
+		u.Name = "John Doe"
+	}
+	if u.Email == "" {
+		u.Email = "john.doe@example.com"
+	}
 }
 
 func (u User) Validate() error {
@@ -45,7 +56,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	
+	user.Normalize()
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(user); err != nil {
@@ -55,7 +67,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("User created successfully"))
 }
 
-
 func main() {
 	fmt.Println("Hello, World!")
-}	
+}
