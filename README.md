@@ -10,6 +10,9 @@ Welcome to the Go Backend Learning repository! This project serves as a step-by-
 - [Chapter 4: Query Parameters & Path variables](#chapter-4-query-parameters--path-variables)
 - [Chapter 5: Middlewares](#chapter-5-middlewares)
 - [Chapter 6: Building a JSON API](#chapter-6-building-a-json-api)
+- [Chapter 7: Structs, Methods, and Data Validation](#chapter-7-structs-methods-and-data-validation)
+- [Chapter 8: PostgreSQL Integration](#chapter-8-postgresql-integration)
+
 
 ---
 
@@ -183,3 +186,25 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 ```
+
+---
+
+## Chapter 7: Structs, Methods, and Data Validation
+
+**Directory:** `src/7-structs-validations-error-handling`
+
+Data integrity is key. This chapter covers:
+- **Structs & Tags**: Defining data models with `struct` and mapping them to JSON.
+- **Methods**: Attaching behavior (Normalize, Validate) to your data types.
+- **Validation**: Ensuring input data meets requirements before processing.
+
+---
+
+## Chapter 8: PostgreSQL Integration
+
+**Directory:** `src/8-postgres`
+
+Moving beyond in-memory storage, we check out persistent storage with PostgreSQL.
+- **Database Connection**: Using `database/sql` and `lib/pq` to connect to Postgres.
+- **CRUD Operations**: executing SQL queries for Create, Read, Update, and Delete actions.
+- **Dockerizing**: Using Docker and Docker Compose to run the Go app and Postgres database in a consistent environment.
